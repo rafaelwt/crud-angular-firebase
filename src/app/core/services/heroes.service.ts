@@ -29,5 +29,20 @@ export class HeroesService {
     }
   }
 
+  getHeroe(key$: string): Observable<any> {
+    return this.apiService.get(`/heroes/${key$}.json` )
+      .pipe(map((data: {hero: Heroe}) => data));
+  }
+
+  getHeroes(): Observable<any> {
+    return this.apiService.get(`/heroes.json` )
+      .pipe(map((data => data)));
+  }
+  getDelete(key$: string) {
+    return this.apiService.delete(`/heroes/${ key$ }.json` )
+    .pipe(map((data: {hero: Heroe}) => data));
+  }
+
+
 
 }

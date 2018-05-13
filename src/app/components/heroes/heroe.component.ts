@@ -39,6 +39,14 @@ export class HeroeComponent implements OnInit {
          this.id = data.id === 'nuevo' ? null : data.id ;
         // this.heroe.key$ = this.id;
          console.log(this.id);
+         if (this.id !== 'nuevo' && this.id !== null ) {
+          this.hereoService.getHeroe( this.id).subscribe( x => {
+            console.log(x);
+            this.heroe = x;
+            // setea el heroe al formualrio
+             this.heroeForm.setValue(this.heroe);
+          });
+         }
         // this.heroe = data;
         // this.heroeForm.patchValue(data.heroe);
        }
@@ -67,5 +75,14 @@ export class HeroeComponent implements OnInit {
   updateHeroe(values: Object) {
     Object.assign(this.heroe, values);
   }
+  agregarNuevoHeroe() {
+    this.router.navigate(['/heroe', 'nuevo']);
+    this.heroeForm.reset({
+      casa: 'Marvel'
+    });
+
+
+  }
+
 
 }

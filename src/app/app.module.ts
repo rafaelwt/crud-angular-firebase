@@ -10,6 +10,8 @@ import { APP_ROUTING } from './app.routes';
 // Servicios
 import { ApiService } from './core/services/api.service';
 import { HeroesService } from './core/services/heroes.service';
+import { BuscadorComponent } from './personeria/buscador/buscador.component';
+import { KeysPipe } from './pipes/keys.pipe';
 
 
 
@@ -17,7 +19,9 @@ import { HeroesService } from './core/services/heroes.service';
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroeComponent
+    HeroeComponent,
+    BuscadorComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

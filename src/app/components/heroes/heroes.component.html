@@ -10,25 +10,36 @@
 <div class="row mt-3 animated fadeIn fast">
   <div class="col-md-12">
     <div class="table-responsive">
-      <table class="table">
+      <table class="table" *ngIf="heroes">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Casa</th>
+            <th scope="col">Biografia</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr *ngFor="let hero of heroes; let i = index">
+            <th scope="row" >{{ i + 1 }}</th>
+            <td>{{ hero.nombre}}</td>
+            <td>{{ hero.casa}}</td>
+            <td>{{ hero.bio}}</td>
+            <td> <button  type="button "class="btn btn-outline-success btn-sm" [routerLink]="['/heroe',hero.key$]"> Editar</button>
+              <button  type="button "class="ml-1 btn btn-outline-danger btn-sm" (click)="borrarHeroe(hero.key$,i)" > Elimnar</button>
+            </td>
           </tr>
 
         </tbody>
       </table>
+
+      <div class="alert alert-info" *ngIf="heroes.length === 0 && !loading" role="alert">
+         No hay registros que mostrar
+        </div>
+        <div class="alert alert-warning" *ngIf="loading" role="alert">
+             Cargando por favor espere
+          </div>
     </div>
   </div>
 </div>
